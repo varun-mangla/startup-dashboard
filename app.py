@@ -70,7 +70,8 @@ def load_startup_details(startup):
     st.title(startup)
     # vertical of startup
     vertical= df[df['startup'].str.contains(startup)]['vertical'].head(1)
-    st.subheader('vertical: ', vertical)
+    st.subheader('vertical: ')
+    st.dataframe(vertical)
     # Sub-vertical of startup
     #sub_vertical= df[df['startup'].str.contains(startup)]['subvertical'].head(1)
     #st.subheader('Sub-Vertical: ', sub_vertical)
