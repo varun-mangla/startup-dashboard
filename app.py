@@ -64,15 +64,15 @@ def load_investor_details(investor):
 def load_startup_details(startup):
     st.title(startup)
     #load the recent 5 investment of the investor
-    last5_df=df[df['startup'].str.contains(startup)].head()[['date','startup','vertical','round','amount']]
+    last5_df=df[df['startup'].str.contains(startup)].head()[['date','investor','vertical','round','amount']]
     st.subheader('Recent Investments')
     st.dataframe(last5_df)
 
     col1,col2=st.columns(2)
     with col1:
-        #Biggest Investments
-        big_series= df[df['startup'].str.contains(startup)].groupby('startup')['amount'].sum().sort_values(ascending=False).head()
-        st.subheader('Biggest Investments')
+        #Biggest Investors
+        big_series= df[df['startup'].str.contains(startup)].groupby('investors')['amount'].sum().sort_values(ascending=False).head()
+        st.subheader('Biggest Investor')
         fig1, ax1 = plt.subplots()
         ax1.bar(big_series.index, big_series.values)
         st.pyplot(fig1)
