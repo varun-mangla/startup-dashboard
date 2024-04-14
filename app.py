@@ -12,7 +12,7 @@ def load_overall_analysis():
 
     #Total Invested Amount
     total=round(df['amount'].sum())
-    st.metric('Total'+ str(total)+'CR')
+    st.metric('Total'+ str(total+'CR')
 
 
 def load_investor_details(investor):
