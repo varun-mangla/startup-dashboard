@@ -1,10 +1,14 @@
 import pandas as pd
 import streamlit as st
-st.info('Site is under construction!.....Please be with me')
+#st.info('Site is under construction!.....Please be with me')
 df = pd.read_csv('startup_cleaned.csv')
 
 def load_investor_details(investor):
     st.title(investor)
+    #load the recent 5 investment of the investor
+    last5_df=df[df['investors'].str.contains(investor)].head()[['date','startup','vertical','round','amount']]
+    st.subheader('Most Recent Investments')
+    st.dataframe(last5_df)
 
 
 st.sidebar.title('Startup Funding Analysis')
