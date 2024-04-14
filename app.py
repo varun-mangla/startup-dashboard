@@ -1,15 +1,28 @@
+import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
+
+st.set_page_config(layout='wide', page_title='Startup Analysis| Varun Mangla')
+
 #st.info('Site is under construction!.....Please be with me')
 df = pd.read_csv('startup_cleaned.csv')
 
 def load_investor_details(investor):
     st.title(investor)
+
     #load the recent 5 investment of the investor
     last5_df=df[df['investors'].str.contains(investor)].head()[['date','startup','vertical','round','amount']]
     st.subheader('Most Recent Investments')
     st.dataframe(last5_df)
 
+    col1,col2=st.columns(2)
+    with col1:
+        #Biggest Investments
+        big_series= df[df['investors'].str.contains(investor)].groupby('startup')['amount'].sum().sort_values(ascending=False)
+        st.subheader('Biggest Investments').head()
+        fig,ax=plt.Subplot()
+        ax.bar(big_series.index,big_series.values)
+        st.pyplot(fig)
 
 st.sidebar.title('Startup Funding Analysis')
 

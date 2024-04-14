@@ -1,1 +1,1 @@
-This app will give data for indian startup funding and its year of receiving of fund
+This app will give Various analysis was done for indian startup and investors funding
