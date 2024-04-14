@@ -18,8 +18,8 @@ def load_investor_details(investor):
     col1,col2=st.columns(2)
     with col1:
         #Biggest Investments
-        big_series= df[df['investors'].str.contains(investor)].groupby('startup')['amount'].sum().sort_values(ascending=False)
-        st.subheader('Biggest Investments').head()
+        big_series= df[df['investors'].str.contains(investor)].groupby('startup')['amount'].sum().sort_values(ascending=False).head()
+        st.subheader('Biggest Investments')
         fig1,ax1=plt.Subplot()
         ax1.bar(big_series.index,big_series.values)
         st.pyplot(fig1)
@@ -27,7 +27,7 @@ def load_investor_details(investor):
     with col2:
         #Vertical
         vertical_series= df[df['investors'].str.contains('IDG Ventures')].groupby('vertical')['amount'].sum().plot(kind='pie')
-        st.subheader('Sector Invested').head()
+        st.subheader('Sector Invested')
         fig2,ax2=plt.Subplot()
         ax2.pie(vertical_series)
         st.pyplot(fig2)
