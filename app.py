@@ -36,7 +36,6 @@ def load_overall_analysis():
         st.subheader(str(num_startups) + ' Startups')
 
 
-
 def load_investor_details(investor):
     st.title(investor)
 
@@ -64,9 +63,27 @@ def load_investor_details(investor):
 
 def load_startup_details(startup):
     st.title(startup)
+    #load the recent 5 investment of the investor
+    last5_df=df[df['startup'].str.contains(startup)].head()[['date','startup','vertical','round','amount']]
+    st.subheader('Recent Investments')
+    st.dataframe(last5_df)
 
+    col1,col2=st.columns(2)
+    with col1:
+        #Biggest Investments
+        big_series= df[df['startup'].str.contains(startup)].groupby('startup')['amount'].sum().sort_values(ascending=False).head()
+        st.subheader('Biggest Investments')
+        fig1, ax1 = plt.subplots()
+        ax1.bar(big_series.index, big_series.values)
+        st.pyplot(fig1)
 
-
+    with col2:
+        #Type of Investments
+        round_series= df[df['startup'].str.contains(startup)].groupby('round')['amount'].sum().sort_values(ascending=False).head()
+        st.subheader('Type of Investment')
+        fig2, ax2 = plt.subplots()
+        ax2.bar(round_series.index, round_series.values)
+        st.pyplot(fig2)
 
 st.sidebar.title('Startup Funding Analysis')
 
