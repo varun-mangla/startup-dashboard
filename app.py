@@ -26,7 +26,7 @@ def load_investor_details(investor):
 
     with col2:
         #Vertical
-        vertical_series= df[df['investors'].str.contains('IDG Ventures')].groupby('vertical')['amount'].sum().plot(kind='pie')
+        vertical_series= df[df['investors'].str.contains(investor)].groupby('vertical')['amount'].sum().plot(kind='pie')
         st.subheader('Sector Invested')
         fig2,ax2=plt.subplot()
         ax2.pie(vertical_series)
