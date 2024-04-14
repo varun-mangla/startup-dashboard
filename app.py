@@ -70,14 +70,23 @@ def load_startup_details(startup):
     st.title(startup)
     # vertical of startup
     vertical= df[df['startup'].str.contains(startup)]['vertical'].head(1)
-    st.subheader('vertical: ')
-    st.dataframe(vertical)
+
     # Sub-vertical of startup
-    #sub_vertical= df[df['startup'].str.contains(startup)]['subvertical'].head(1)
-    #st.subheader('Sub-Vertical: ', sub_vertical)
+    sub_vertical= df[df['startup'].str.contains(startup)]['subvertical'].head(1)
+
     # Location of startup
-    #city= df[df['startup'].str.contains(startup)]['city'].head(1)
-    #st.subheader('Location: ', city)
+    city= df[df['startup'].str.contains(startup)]['city'].head(1)
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.subheader('vertical: ')
+        st.dataframe(vertical)
+    with col2:
+        st.subheader('Sub-Vertical: ')
+        st.dataframe(sub_vertical)
+    with col3:
+        st.subheader('Location: ')
+        st.dataframe(city)
 
     #load the recent 5 investment of the investor
     investor_df = df[df['startup'].str.contains(startup)].head()[['date', 'investors', 'vertical', 'round', 'amount']]
