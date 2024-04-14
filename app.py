@@ -13,13 +13,13 @@ def load_overall_analysis():
     total = round(df['amount'].sum())
 
     # 2. Maximum Amount infused in Startup
-    max_funding = df.groupby('startup')['amount'].max().sort_values(ascending=False).head(1).values[0]
+    max_funding = round(df.groupby('startup')['amount'].max().sort_values(ascending=False).head(1).values[0])
 
     # 3. Average Funding
-    avg_funding = df.groupby('startup')['amount'].sum().mean()
+    avg_funding = round(df.groupby('startup')['amount'].sum().mean())
 
     # 4. Total Funded Startups
-    num_startups = df.groupby('startup')['startup'].nunique()
+    num_startups = df['startup'].nunique()
 
     col1,col2,col3,col4= st.columns(4)
     with col1:
