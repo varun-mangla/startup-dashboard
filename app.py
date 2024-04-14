@@ -7,6 +7,14 @@ st.set_page_config(layout='wide', page_title='Startup Analysis| Varun Mangla')
 #st.info('Site is under construction!.....Please be with me')
 df = pd.read_csv('startup_cleaned.csv')
 
+def load_overall_analysis():
+    st.title('Overall Analysis')
+
+    #Total Invested Amount
+    total=round(df['amount'].sum())
+    st.metric('Total'+ str(total)+'CR')
+
+
 def load_investor_details(investor):
     st.title(investor)
 
@@ -32,19 +40,26 @@ def load_investor_details(investor):
         ax2.bar(round_series.index, round_series.values)
         st.pyplot(fig2)
 
+def load_startup_details(startup):
+    st.title(startup)
+
+
 
 
 st.sidebar.title('Startup Funding Analysis')
 
 option = st. sidebar.selectbox('Select One', ['Overall Analysis','Startup','Investor'])
 if option == 'Overall Analysis':
-    st.title('Overall Analysis')
+    btn0= st.sidebar.button('Show Overall Analysis')
+    if btn0:
+        load_overall_analysis()
 
 elif option == 'Startup':
-    st.sidebar.selectbox('Select Startup',sorted(df['startup'].unique().tolist()))
-    btn1=st.sidebar.button('Find Startup Details')
     st.title('Startup Analysis')
-
+    selected_startup=st.sidebar.selectbox('Select Startup',sorted(df['startup'].unique().tolist()))
+    btn1=st.sidebar.button('Find Startup Details')
+    if btn1:
+        load_startup_details(selected_startup)
 
 elif option == 'Investor':
     st.title('Investor Analysis')
