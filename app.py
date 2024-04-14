@@ -12,7 +12,7 @@ def load_investor_details(investor):
 
     #load the recent 5 investment of the investor
     last5_df=df[df['investors'].str.contains(investor)].head()[['date','startup','vertical','round','amount']]
-    st.subheader('Most Recent Investments')
+    st.subheader('Recent Investments')
     st.dataframe(last5_df)
 
     col1,col2=st.columns(2)
@@ -25,10 +25,9 @@ def load_investor_details(investor):
         st.pyplot(fig1)
 
     with col2:
-        #Vertical
-        #Round Investments
+        #Type of Investments
         round_series= df[df['investors'].str.contains(investor)].groupby('round')['amount'].sum().sort_values(ascending=False).head()
-        st.subheader('round')
+        st.subheader('Type of Investment')
         fig2, ax2 = plt.subplots()
         ax2.bar(round_series.index, round_series.values)
         st.pyplot(fig2)
