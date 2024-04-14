@@ -26,12 +26,12 @@ def load_investor_details(investor):
 
     with col2:
         #Vertical
-        vertical_series= df[df['investors'].str.contains(investor)].groupby('vertical')['amount'].sum().plot(kind='pie')
-        st.subheader('Sector Invested')
-        fig2,ax2=plt.subplot()
-        ax2.pie(vertical_series,labels=vertical_series.index)
+        #Round Investments
+        round_series= df[df['investors'].str.contains(investor)].groupby('round')['amount'].sum().sort_values(ascending=False).head()
+        st.subheader('round')
+        fig2, ax2 = plt.subplots()
+        ax2.bar(round_series.index, round_series.values)
         st.pyplot(fig2)
-
 
 
 
