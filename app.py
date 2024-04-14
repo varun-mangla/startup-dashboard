@@ -13,7 +13,7 @@ def load_overall_analysis():
     total = round(df['amount'].sum())
 
     # 2. Maximum Amount infused in Startup
-    max_funding = df.groupby('startup')['amount'].max().sort_values(assending=False).head(1).values[0]
+    max_funding = df.groupby('startup')['amount'].max().sort_values(ascending=False).head(1).values[0]
 
     # 3. Average Funding
     avg_funding = df.groupby('startup')['amount'].sum().mean()
