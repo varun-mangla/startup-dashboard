@@ -39,7 +39,8 @@ def load_overall_analysis():
 
 
 def load_investor_details(investor):
-    st.title('Investor Name: ',investor)
+    st.title('Investor Name: ')
+    st.title(investor)
 
 
     #load the recent 5 investment of the investor
@@ -67,7 +68,8 @@ def load_investor_details(investor):
 
 def load_startup_details(startup):
     #Name of startup
-    st.title('Startup Name: ',startup)
+    st.title('Startup Name: ')
+    st.title(startup)
     # vertical of startup
     vertical= df[df['startup'].str.contains(startup)]['vertical'].head(1)
 
