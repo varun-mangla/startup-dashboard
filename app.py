@@ -32,8 +32,8 @@ def load_overall_analysis():
         st.subheader('Average Funding ')
         st.subheader(str(avg_funding) + ' CR')
     with col4:
-        st.subheader('Funded Startups ')
-        st.subheader(str(num_startups) + ' CR')
+        st.subheader('Number of Data ')
+        st.subheader(str(num_startups) + ' Startups')
 
 
 
