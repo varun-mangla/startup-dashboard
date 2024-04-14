@@ -46,7 +46,6 @@ def load_investor_details(investor):
     last5_df=df[df['investors'].str.contains(investor)].head()[['date','startup','vertical','round','amount']]
     st.subheader('Recent Investments')
     st.dataframe(last5_df)
-    st.subheader('amount in cr')
 
     col1,col2=st.columns(2)
     with col1:
