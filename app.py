@@ -3,6 +3,10 @@ import streamlit as st
 st.info('Site is under construction!.....Please be with me')
 df = pd.read_csv('startup_cleaned.csv')
 
+def load_investor_details(investor):
+    st.title(investor)
+
+
 st.sidebar.title('Startup Funding Analysis')
 
 option = st. sidebar.selectbox('Select One', ['Overall Analysis','Startup','Investor'])
@@ -17,7 +21,9 @@ elif option == 'Startup':
 
 elif option == 'Investor':
     st.title('Investor Analysis')
-    st.sidebar.selectbox('Select Investor',sorted(set(df['investors'].str.split(',').sum())))
+    selected_investor=st.sidebar.selectbox('Select Investor',sorted(set(df['investors'].str.split(',').sum())))
     btn2=st.sidebar.button('Find Investor Details')
+    if btn2:
+        load_investor_details(selected_investor)
 
 
