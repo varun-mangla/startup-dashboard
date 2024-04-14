@@ -41,6 +41,7 @@ def load_overall_analysis():
 def load_investor_details(investor):
     st.title(investor)
 
+
     #load the recent 5 investment of the investor
     last5_df=df[df['investors'].str.contains(investor)].head()[['date','startup','vertical','round','amount']]
     st.subheader('Recent Investments')
@@ -66,6 +67,8 @@ def load_investor_details(investor):
 
 def load_startup_details(startup):
     st.title(startup)
+    city= df[df['startup'].str.contains(startup)]['city'].head(1)
+    st.subheader("Location: " str(city))
     #load the recent 5 investment of the investor
     investor_df = df[df['startup'].str.contains(startup)].head()[['date', 'investors', 'vertical', 'round', 'amount']]
     st.subheader('Investors')
