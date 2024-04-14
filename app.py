@@ -79,13 +79,13 @@ def load_startup_details(startup):
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.subheader('Bussiness Vertical: ')
+        st.subheader('Business Vertical: ')
         st.dataframe(vertical)
     with col2:
         st.subheader('Sub-Vertical: ')
         st.dataframe(sub_vertical)
     with col3:
-        st.subheader('Location of Bussiness: ')
+        st.subheader('Location: ')
         st.dataframe(city)
 
     #load the recent 5 investment of the investor
