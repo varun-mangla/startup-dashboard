@@ -10,10 +10,14 @@ if option == 'Overall Analysis':
     st.title('Overall Analysis')
 
 elif option == 'Startup':
-    st.title('Startup Analysis')
     st.sidebar.selectbox('Select Startup',sorted(df['startup'].unique().tolist()))
+    btn1=st.sidebar.button('Find Startup Details')
+    st.title('Startup Analysis')
 
 
 elif option == 'Investor':
     st.title('Investor Analysis')
-    st.sidebar.selectbox('Select Investor',sorted(df['investors'].unique().tolist()) )
+    st.sidebar.selectbox('Select Investor',sorted(set(df['investors'].str.split(',').sum())))
+    btn2=st.sidebar.button('Find Investor Details')
+
+
