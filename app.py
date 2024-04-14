@@ -39,7 +39,7 @@ def load_overall_analysis():
 
 
 def load_investor_details(investor):
-    st.title(investor)
+    st.title('Investor Name: ',investor)
 
 
     #load the recent 5 investment of the investor
@@ -67,7 +67,7 @@ def load_investor_details(investor):
 
 def load_startup_details(startup):
     #Name of startup
-    st.title(startup)
+    st.title('Startup Name: ',startup)
     # vertical of startup
     vertical= df[df['startup'].str.contains(startup)]['vertical'].head(1)
 
@@ -79,20 +79,19 @@ def load_startup_details(startup):
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.subheader('vertical: ')
+        st.subheader('Bussiness Vertical: ')
         st.dataframe(vertical)
     with col2:
         st.subheader('Sub-Vertical: ')
         st.dataframe(sub_vertical)
     with col3:
-        st.subheader('Location: ')
+        st.subheader('Location of Bussiness: ')
         st.dataframe(city)
 
     #load the recent 5 investment of the investor
     investor_df = df[df['startup'].str.contains(startup)].head()[['date', 'investors', 'vertical', 'round', 'amount']]
     st.subheader('Investors')
     st.dataframe(investor_df)
-    st.subheader('amount in cr')
 
     col1,col2=st.columns(2)
     with col1:
@@ -106,7 +105,7 @@ def load_startup_details(startup):
 
     with col2:
         #Type of Investments
-        round_series= df[df['investors'].str.contains(startup)].groupby('round')['amount'].sum().sort_values(ascending=False).head()
+        round_series= df[df['investors'].str.contains(startup)].groupby('round')['amount'].sum().sort_values(ascending=False)
         st.subheader('Type of Investment')
         fig2, ax2 = plt.subplots()
         ax2.bar(round_series.index, round_series.values)
