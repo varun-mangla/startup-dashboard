@@ -9,10 +9,32 @@ df = pd.read_csv('startup_cleaned.csv')
 
 def load_overall_analysis():
     st.title('Overall Analysis')
+    # 1. Total Invested Amount
+    total = round(df['amount'].sum())
 
-    #Total Invested Amount
-    total=round(df['amount'].sum())
-    st.subheader('Total '+ str(total)+' CR')
+    # 2. Maximum Amount infused in Startup
+    max_funding = df.groupby('startup')['amount'].max().sort_values(assending=False).head(1).values[0]
+
+    # 3. Average Funding
+    avg_funding = df.groupby('startup')['amount'].sum().mean()
+
+    # 4. Total Funded Startups
+    num_startups = df.groupby('startup')['startup'].nunique()
+
+    col1,col2,col3,col4= st.columns(4)
+    with col1:
+        st.subheader('Total ')
+        st.subheader(str(total) + ' CR')
+    with col2:
+        st.subheader('Maximum Funding ')
+        st.subheader(str(max_funding) + ' CR')
+    with col3:
+        st.subheader('Average Funding ')
+        st.subheader(str(avg_funding) + ' CR')
+    with col4:
+        st.subheader('Funded Startups ')
+        st.subheader(str(num_startups) + ' CR')
+
 
 
 def load_investor_details(investor):
