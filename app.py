@@ -67,7 +67,7 @@ def load_investor_details(investor):
 def load_startup_details(startup):
     st.title(startup)
     #load the recent 5 investment of the investor
-    investor_df = df[df['startup'].str.contains('Shuttl')].head()[['date', 'investors', 'vertical', 'round', 'amount']]
+    investor_df = df[df['startup'].str.contains(startup)].head()[['date', 'investors', 'vertical', 'round', 'amount']]
     st.subheader('Investors')
     st.dataframe(investor_df)
     st.subheader('amount in cr')
