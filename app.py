@@ -7,7 +7,7 @@ st.set_page_config(layout='wide', page_title='Startup Analysis| Varun Mangla')
 #st.info('Site is under construction!.....Please be with me')
 df = pd.read_csv('startup_cleaned.csv')
 st.subheader("Welcome to Startup Investment Tracker! Explore investments in Indian startups effortlessly")
-st.subheader("Select a startup or investor from the sidebar menu or opt for the 'Overall Analysis' for a comprehensive overview")
+st.subheader("Select a 'startup' or 'investor' from the sidebar menu or opt for the 'Overall Analysis' for a comprehensive overview")
 
 def load_overall_analysis():
     st.title('Overall Analysis')
