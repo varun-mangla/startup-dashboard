@@ -75,9 +75,8 @@ def load_startup_details(startup):
     col1,col2=st.columns(2)
     with col1:
         #Biggest Investors
-        big_money = df[df['startup'].str.contains('Shuttl')].groupby('investors')['amount'].sum().sort_values(
+        big_money = df[df['startup'].str.contains(startup)].groupby('investors')['amount'].sum().sort_values(
             ascending=False).head()
-
         st.subheader('Biggest Investor')
         fig1, ax1 = plt.subplots()
         ax1.bar(big_money.index, big_money.values)
@@ -85,7 +84,7 @@ def load_startup_details(startup):
 
     with col2:
         #Type of Investments
-        round_series= df[df['startup'].str.contains(startup)].groupby('round')['amount'].sum().sort_values(ascending=False).head()
+        round_series= df[df['investors'].str.contains(startup)].groupby('round')['amount'].sum().sort_values(ascending=False).head()
         st.subheader('Type of Investment')
         fig2, ax2 = plt.subplots()
         ax2.bar(round_series.index, round_series.values)
